@@ -13,7 +13,7 @@ This project simulates a small routed network where multiple routers exchange ro
 
 # Network Topology
 
-![Network Topology](topology.png)
+![Network Topology](topology.PNG)
 
 > Replace `topology.png` with the screenshot of your Packet Tracer topology.
 
