@@ -95,6 +95,7 @@ network 192.168.1.0
 network 10.0.0.0
 network 14.0.0.0
 no auto-summary
+```
 
 ### 🔸 EIGRP (Advanced Performance)
 
@@ -111,6 +112,7 @@ network 192.168.1.0
 network 10.0.0.0
 network 14.0.0.0
 no auto-summary
+```
 
 ### 🔸 OSPF (Enterprise Standard)
 
@@ -125,6 +127,6 @@ router ospf 1
 network 192.168.1.0 0.0.0.255 area 0
 network 10.0.0.0 0.0.0.255 area 0
 network 14.0.0.0 0.0.0.255 area 0
-
+```
 
 
