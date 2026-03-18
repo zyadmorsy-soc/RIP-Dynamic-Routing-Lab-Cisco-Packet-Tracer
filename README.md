@@ -88,6 +88,7 @@ The network is designed using a **ring topology** to ensure:
 - Hop count metric  
 - Simple but limited scalability 
 
+```bash
 router rip
 version 2
 network 192.168.1.0
@@ -103,6 +104,8 @@ Uses composite metric (Bandwidth + Delay)
 
 Supports unequal load balancing
 
+
+```bash
 router eigrp 100
 network 192.168.1.0
 network 10.0.0.0
@@ -117,6 +120,7 @@ Uses SPF (Dijkstra Algorithm)
 
 Scalable and efficient
 
+```bash
 router ospf 1
 network 192.168.1.0 0.0.0.255 area 0
 network 10.0.0.0 0.0.0.255 area 0
