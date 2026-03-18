@@ -1,93 +1,126 @@
-# RIP Dynamic Routing Lab – Cisco Packet Tracer
+# 🚀 Enterprise Routing Lab – RIP, OSPF & EIGRP (Cisco Packet Tracer)
 
 ![Cisco](https://img.shields.io/badge/Cisco-Networking-blue)
 ![Packet Tracer](https://img.shields.io/badge/Tool-Cisco%20Packet%20Tracer-green)
-![Routing](https://img.shields.io/badge/Routing-RIP%20v2-orange)
-![License](https://img.shields.io/badge/License-MIT-yellow)
-
-A beginner-friendly networking lab demonstrating **Dynamic Routing using RIP Version 2** in Cisco Packet Tracer.
-
-This project simulates a small routed network where multiple routers exchange routing information using RIP to allow communication between two separate LAN networks.
+![Routing](https://img.shields.io/badge/Routing-RIP%20%7C%20OSPF%20%7C%20EIGRP-orange)
+![Level](https://img.shields.io/badge/Level-Intermediate%20%2F%20Advanced-red)
 
 ---
 
-# Network Topology
+## 📌 Project Overview
 
-![Network Topology](topology.PNG)
+This project simulates a **real-world enterprise network** using multiple dynamic routing protocols:
 
+- 🔁 RIP v2 (Baseline routing)
+- ⚡ EIGRP (Fast convergence - Cisco proprietary)
+- 🌐 OSPF (Enterprise-grade link-state routing)
 
-# Project Overview
+The network is designed using a **ring topology** to ensure:
 
-This lab demonstrates:
-
-- Dynamic routing using **RIP Version 2**
-- Communication between **two different LAN networks**
-- Basic **router interconnections**
-- **DHCP configuration** for automatic IP assignment
-- End-to-end connectivity testing using **ping**
-
-The network consists of **five routers connected in a ring topology** with two LAN networks on the edges.
+- Redundancy  
+- Failover support  
+- Multiple routing paths  
 
 ---
 
-# Network Structure
+## 🧠 Architecture Overview
+         [LAN 2]
+           |
+           B
+         /   \
+        A     C —— [LAN 3]
+       /       \
+ [LAN1]         D —— [LAN 4]
+       \       /
+        E ————
+           |
+       [LAN 5]
 
-## Left LAN
 
-Network: `192.168.1.0 /24`
-
-| Device | IP Address |
-|------|-------------|
-| PC0 | 192.168.1.2 |
-| PC2 | 192.168.1.3 |
-| Router A | 192.168.1.1 |
-
-Router A acts as the **default gateway** for this LAN.
-
----
-
-## Right LAN
-
-Network: `200.200.200.0 /24`
-
-| Device | IP Address |
-|------|-------------|
-| PC3 | 200.200.200.2 |
-| PC1 | 200.200.200.3 |
-| Router C | 200.200.200.1 |
-
-Router C acts as the **default gateway**.
+> 💡 **Design Concept:**
+> - Core routers form a **ring (high availability)**
+> - Each router connects to a **separate LAN**
+> - Routing protocols dynamically discover all networks
 
 ---
 
-# Router Interconnections
+## 🖼️ Network Topologies
 
-| Link | Network |
-|-----|--------|
-| Router A ↔ Router B | 10.0.0.0 |
-| Router B ↔ Router C | 11.0.0.0 |
-| Router C ↔ Router D | 12.0.0.0 |
-| Router D ↔ Router E | 13.0.0.0 |
-| Router E ↔ Router A | 14.0.0.0 |
+### 🔹 RIP & EIGRP Scenario
+![Topology](topology.PNG)
 
-These connections create a **ring topology** between routers.
+### 🔹 OSPF Full Enterprise Scenario
+![Topology](topology_full.PNG)
 
 ---
 
-# RIP Configuration
+## 🌐 Network Design
 
-All routers run **RIP Version 2** to exchange routing information.
+### 🟢 LAN Networks
 
-Example configuration:
+| LAN | Network | Description |
+|-----|--------|------------|
+| LAN 1 | 192.168.1.0/24 | Internal users |
+| LAN 2 | 201.201.201.0/24 | Branch network |
+| LAN 3 | 200.200.200.0/24 | External segment |
+| LAN 4 | 202.202.202.0/24 | Remote office |
+| LAN 5 | 203.203.203.0/24 | Backup site |
 
-#Router A
-```bash
-enable
-configure terminal
+---
+
+### 🔗 Router Backbone Networks
+
+| Connection | Network |
+|------------|--------|
+| A ↔ B | 10.0.0.0 |
+| B ↔ C | 11.0.0.0 |
+| C ↔ D | 12.0.0.0 |
+| D ↔ E | 13.0.0.0 |
+| E ↔ A | 14.0.0.0 |
+
+---
+
+## ⚙️ Routing Protocols Implementation
+
+### 🔸 RIP v2 (Baseline)
+
+- Distance Vector Protocol  
+- Hop count metric  
+- Simple but limited scalability 
+
 router rip
 version 2
 network 192.168.1.0
 network 10.0.0.0
 network 14.0.0.0
 no auto-summary
-exit
+
+### 🔸 EIGRP (Advanced Performance)
+
+Fast convergence
+
+Uses composite metric (Bandwidth + Delay)
+
+Supports unequal load balancing
+
+router eigrp 100
+network 192.168.1.0
+network 10.0.0.0
+network 14.0.0.0
+no auto-summary
+
+### 🔸 OSPF (Enterprise Standard)
+
+Link-State Protocol
+
+Uses SPF (Dijkstra Algorithm)
+
+Scalable and efficient
+
+router ospf 1
+network 192.168.1.0 0.0.0.255 area 0
+network 10.0.0.0 0.0.0.255 area 0
+network 14.0.0.0 0.0.0.255 area 0
+
+
+
